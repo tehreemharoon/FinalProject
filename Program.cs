@@ -2,12 +2,12 @@
 
 class Program
 {
-    private static Customers customers;
+    private static Patients patients;
         private static List<Appointment> appointments;
-        private static List<CustomerAppointment> customerAppointments;
-        private static Customer authenticatedCustomer;
+        private static List<PatientAppointment> patientAppointments;
+        private static Patient authenticatedPatient;
 
-        private static Customer customer;
+        private static Patient patient;
         static void Main(string[] args)
         {
             Console.WriteLine("Initializing...");
@@ -17,14 +17,14 @@ class Program
 
         static void Initialize()
         {
-            var c1 = new Customer
+            var c1 = new Patient
             {
                 FirstName = "Kambiz",
                 LastName = "Saffari",
                 Username = "kambiz",
                 Password = "1234"
             };
-            var c2 = new Customer
+            var c2 = new Patient
             {
                 FirstName = "Terence",
                 LastName = "Ow",
@@ -35,23 +35,23 @@ class Program
             var a2 = new Appointment();
             var a3 = new Appointment();
 
-            var ca1 = new CustomerAppointment(c1, a1);
-            var ca2 = new CustomerAppointment(c1, a2);
-            var ca3 = new CustomerAppointment(c2, a3);
+            var ca1 = new PatientAppointment(c1, a1);
+            var ca2 = new PatientAppointment(c1, a2);
+            var ca3 = new PatientAppointment(c2, a3);
 
-            customers = new Customers();
-            customers.customers.Add(c1);
-            customers.customers.Add(c2);
+            patients = new Patients();
+            patients.patients.Add(c1);
+            patients.patients.Add(c2);
 
             appointments = new List<Appointment>();
             appointments.Add(a1);
             appointments.Add(a2);
             appointments.Add(a3);
 
-            customerAppointments = new List<CustomerAppointment>();
-            customerAppointments.Add(ca1);
-            customerAppointments.Add(ca2);
-            customerAppointments.Add(ca3);
+            patientAppointments = new List<PatientAppointment>();
+            patientAppointments.Add(ca1);
+            patientAppointments.Add(ca2);
+            patientAppointments.Add(ca3);
 
 
         }
@@ -103,10 +103,10 @@ class Program
                 string username = Console.ReadLine();
                 Console.Write("Enter your password: ");
                 string password = Console.ReadLine();
-                authenticatedCustomer = customers.Authenticate(username, password);
-                if (authenticatedCustomer != null)
+                authenticatedPatient = patients.Authenticate(username, password);
+                if (authenticatedPatient != null)
                 {
-                    Console.WriteLine($"Welcome {authenticatedCustomer.FirstName}");
+                    Console.WriteLine($"Welcome {authenticatedPatient.FirstName}");
                 }
                 else
                 {
@@ -115,13 +115,13 @@ class Program
             }
             else
             {
-                Console.WriteLine($"You are already logged in as {authenticatedCustomer.Username}");
+                Console.WriteLine($"You are already logged in as {authenticatedPatient.Username}");
             }
         }
 
         static void LogoutMenu()
         {
-            authenticatedCustomer = null;
+            authenticatedPatient = null;
             Console.WriteLine("Logged out!");
         }
 
@@ -136,7 +136,7 @@ class Program
             Console.Write("Password: ");
             string password = Console.ReadLine();
 
-            var newCustomer = new Customer
+            var newPatient = new Patient
             {
                 FirstName = firstName,
                 LastName = LastName,
@@ -144,7 +144,7 @@ class Program
                 Password = password
             };
 
-            customers.customers.Add(newCustomer);
+            patients.patients.Add(newPatient);
 
             Console.WriteLine("Profile created!");
 
@@ -153,14 +153,14 @@ class Program
 
         static void GetCurrentAppointmentsMenu()
         {
-            if(authenticatedCustomer == null)
+            if(authenticatedPatient == null)
             {
                 Console.WriteLine("You are not logged in.");
                 return;
             }
 
 
-            var appointmentList = customerAppointments.Where(o => o.customer.Username == authenticatedCustomer.Username);
+            var appointmentList = patientAppointments.Where(o => o.patient.Username == authenticatedPatient.Username);
 
             if(appointmentList.Count() == 0)
             {
