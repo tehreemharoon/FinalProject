@@ -8,10 +8,11 @@ public class Physician
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string address {get; set;}
-        public string phonenumber {get; set;}
-        public string degree {get; set;}
-        public string position {get; set;}
+        public string Address {get; set;}
+        public string Phonenumber {get; set;}
+        public string Degree {get; set;}
+        public string Position {get; set;}
+        public string Training {get; set;}
 
         public Physician(){
             autoIncrement++;
