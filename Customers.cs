@@ -1,17 +1,17 @@
 ﻿namespace FinalProject;
 
-public class Customers
+public class Patients
 {
-    public List<Customer> customers { get; set; }
+    public List<Patient> patients { get; set; }
 
-        public Customers()
+        public Patients()
         {
-            customers = new List<Customer>();
+            patients = new List<Patient>();
         }
 
-        public Customer Authenticate(string username, string password)
+        public Patient Authenticate(string username, string password)
         {
-            var c = customers.Where(o => (o.Username == username) && (o.Password == password));
+            var c = patients.Where(o => (o.Username == username) && (o.Password == password));
 
             if(c.Count() > 0)
             {

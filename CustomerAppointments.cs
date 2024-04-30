@@ -1,13 +1,13 @@
 ﻿namespace FinalProject;
 
-public class CustomerAppointment
+public class PatientAppointment
 {
-    public Customer customer { get; set; }
+    public Patient patient { get; set; }
         public Appointment appointment { get; set; }
 
-        public CustomerAppointment(Customer c, Appointment a)
+        public PatientAppointment(Patient p, Appointment a)
         {
-            customer = c;
+            patient = p;
             appointment = a;
         }
 }
