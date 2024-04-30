@@ -1,17 +1,27 @@
 ﻿namespace FinalProject;
 
-public class Customer
+public class Patient
 {
     private static int autoIncreament;
-        public int Id { get; set; }
+        public int PatientID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string PatientPhone { get; set; }
+        public string gender { get; set; }
+        public int PatientInsuranceNumber { get; set; }
+        public string PatientEmail {get; set;}
+        public string PatientAddress { get; set; }
+        public int PatientAge { get; set; }
 
-        public Customer()
+
+        public Patient()
         {
             autoIncreament++;
-            Id = autoIncreament;
+            PatientID = autoIncreament;
+            
+            autoIncreament++;
+            PatientInsuranceNumber = autoIncreament;
         }
 }
