@@ -97,7 +97,7 @@ class Program
 
         static void LoginMenu()
         {
-            if(authenticatedCustomer == null)
+            if(authenticatedPatient == null)
             {
                 Console.Write("Enter your username: ");
                 string username = Console.ReadLine();
