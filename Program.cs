@@ -238,7 +238,7 @@ class Program
   
     static void physiciandepartment()
     {
-        Physician p1 = new Physician ("Dr. Steiner");
+        Physician ph1 = new Physician ("Dr. Steiner");
         Physician p2 = new Physician("Dr. Saffari");
         Physician p3 = new Physician ("Dr. Lee");
 
@@ -248,9 +248,10 @@ class Program
         Department d3 = new Department ("Ancology");
 
 
-        d1.AddPhysician(p1);
+        d1.AddPhysician(ph1);
         d2.AddPhysician(p2);
         d3.AddPhysician(p3);
+        d1.AddPhysician(p1);
 Console.WriteLine("Physicians in Dermetology Department:");
     foreach (var physician in d1.Physicians)
     {
