@@ -118,6 +118,9 @@ class Program
                     case "q":
                         done = true;
                         break;
+                    case "p":
+                        physiciandepartment();
+                        break;
                     default:
                         Console.WriteLine("Invalid command!");
                         break;
@@ -232,6 +235,42 @@ class Program
                 }
             }
         }
+  
+    static void physiciandepartment()
+    {
+        Physician ph1 = new Physician ("Dr. Steiner");
+        Physician p2 = new Physician("Dr. Saffari");
+        Physician p3 = new Physician ("Dr. Lee");
+
+
+        Department d1 = new Department ("Dermetology");
+        Department d2 = new Department("CVICU");
+        Department d3 = new Department ("Ancology");
+
+
+        d1.AddPhysician(ph1);
+        d2.AddPhysician(p2);
+        d3.AddPhysician(p3);
+        d1.AddPhysician(p1);
+Console.WriteLine("Physicians in Dermetology Department:");
+    foreach (var physician in d1.Physicians)
+    {
+    Console.WriteLine(physician.Name);
+    }
+
+
+    Console.WriteLine("Physicians in CVICU Department:");
+    foreach (var physician in d2.Physicians)
+{
+Console.WriteLine(physician.Name);
+}
+    Console.WriteLine("Physicians in Oncology Department:");
+    foreach (var physician in d3.Physicians)
+    {
+    Console.WriteLine(physician.Name);
+    }
+}
+=======
 
         static void AddAppointment(){
             if(authenticatedPatient == null){

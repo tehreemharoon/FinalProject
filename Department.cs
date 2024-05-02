@@ -12,14 +12,17 @@ public class Department
 
     public Department (int departmentID, string name,string description)
     {
-        DepartmentID = ++ departmentID;
-
-
-        
+        DepartmentID = ++ departmentID; 
     }
-
-   
-
-
+    public List<Physician> Physicians { get; set; }
+    public Department(string name)
+    {
+        Name = name;
+        Physicians = new List<Physician>();
+    }
+    public void AddPhysician(Physician physician)
+    {
+        Physicians.Add(physician);
+    }
 
 }
