@@ -1,4 +1,6 @@
-﻿namespace FinalProject;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FinalProject;
 
 class Program
 {
@@ -6,6 +8,7 @@ class Program
         private static List<Appointment> appointments;
         private static List<PatientAppointment> patientAppointments;
         private static Patient authenticatedPatient;
+        private static Physicians physicians;
 
         private static Patient patient;
         static void Main(string[] args)
@@ -22,22 +25,47 @@ class Program
                 FirstName = "Kambiz",
                 LastName = "Saffari",
                 Username = "kambiz",
-                Password = "1234"
+                Password = "1234",
+                PatientPhone = "1231231234",
+                gender = "male",
+                PatientAddress = "4321 MyHouse",
+                PatientEmail = "KSaffari@email.com",
+                PatientAge = 37,
             };
             var c2 = new Patient
             {
-                FirstName = "Terence",
+                FirstName = "Trina",
                 LastName = "Ow",
-                Username = "terence",
-                Password = "2345"
+                Username = "Trina",
+                Password = "2345",
+                PatientPhone = "3213214321",
+                gender = "female",
+                PatientAddress = "5678 House",
+                PatientEmail = "Tbae@email.com",
+                PatientAge = 23,
             };
+            
+            var p1 = new Physician{
+                FirstName = "Fisher",
+                LastName = "Man",
+                Username = "fishman",
+                Password = "fish",
+                Address = "1234 Home",
+                Phonenumber = "1234567890",
+                Degree = "Doctorate",
+                Position = "Doctor",
+            };
+
             var a1 = new Appointment();
             var a2 = new Appointment();
             var a3 = new Appointment();
 
-            var ca1 = new PatientAppointment(c1, a1);
-            var ca2 = new PatientAppointment(c1, a2);
-            var ca3 = new PatientAppointment(c2, a3);
+            var ca1 = new PatientAppointment(c1, a1, p1);
+            var ca2 = new PatientAppointment(c1, a2, p1);
+            var ca3 = new PatientAppointment(c2, a3, p1);
+
+            physicians = new Physicians();
+            physicians.physicians.Add(p1);
 
             patients = new Patients();
             patients.patients.Add(c1);
