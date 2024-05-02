@@ -5,10 +5,10 @@ public class PhysicianDepartment
     public Physician physician{get; set;}
     public Department department {get; set;}
 
-    public PhysicianDepartment(Physician physician, Department department);
+    public PhysicianDepartment(Physician ph, Department d)
     {
-        Physician = physician;
-        Department = Department;
+        physician = ph;
+        department = d;
     }
 
 
