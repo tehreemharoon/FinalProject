@@ -6,6 +6,7 @@ namespace FinalProject;
 
 public class Department
 {
+    //Test
     public int DepartmentID {get; set;}
     public string Name{get; set;}
     public string Description {get;set;}
