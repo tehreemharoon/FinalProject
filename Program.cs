@@ -92,7 +92,7 @@ class Program
 
             while (!done)
             {
-                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Appointments: 4 --- Clear Screen: c --- Quit: q ---");
+                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Appointments: 4 --- Clear Screen: 5 --- Make Appointment: 6 --- Print Out Physician: c --- Quit: q ---");
                 Console.Write("Choice: ");
                 string choice = Console.ReadLine();
                 switch(choice)
@@ -234,6 +234,14 @@ class Program
         }
 
         static void AddAppointment(){
+            if(authenticatedPatient == null){
+                Console.WriteLine("You must be logged in to make an appointment");
+                return;
+            }
+            if(authenticatedPhysician != null){
+                Console.WriteLine("Physicians can not make appointments.");
+                return;
+            }
             System.Console.WriteLine("Who would you like to make an appointment with!");
             if(physicians.physicians.Count() == 0){
                 System.Console.WriteLine("There are currently no physicians available.");
