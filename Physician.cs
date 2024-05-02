@@ -18,4 +18,10 @@ public class Physician
             autoIncrement++;
             Id = autoIncrement;
         }
+    public string Name { get; set; }
+
+    public Physician(string name)
+    {
+        Name = name;
+    }
 }
