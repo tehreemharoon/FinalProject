@@ -240,14 +240,21 @@ class Program
             }
             else
             {
+                System.Console.WriteLine("Available physicians:");
                 foreach(var physician in physicians.physicians){
-                    System.Console.WriteLine($"The available physicians are Dr.{physician.LastName}");
-                    string chosenphysician = Console.ReadLine();
-                    var cp = physicians.physicians.Where(o => o.LastName == chosenphysician);
+                    System.Console.WriteLine($"Dr. {physician.LastName}");
+                }
+                System.Console.WriteLine("Enter the last name of the physician you want to make an appointment with.");
+                string chosenphysician = Console.ReadLine();
+                var cp = physicians.physicians.FirstOrDefault(o => o.LastName == chosenphysician);
+                if(chosenphysician != null){
                     var na1 = new Appointment();
                     appointments.Add(na1);
-                    patients.patients.Add(authenticatedPatient);
-                    var np1 = new PatientAppointment(authenticatedPatient, na1, cp);
+                    var newPatienAppointment = new PatientAppointment(authenticatedPatient, na1, cp);
+                    patientAppointments.Add(newPatienAppointment);
+                    System.Console.WriteLine($"Appointment with Dr. {chosenphysician} has been made.");
+                } else {
+                    System.Console.WriteLine($"Physician with the last name {chosenphysician} not found");
                 }
             }
         }
