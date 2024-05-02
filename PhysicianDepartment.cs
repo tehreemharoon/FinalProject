@@ -1,14 +1,15 @@
 ﻿namespace FinalProject
 {
+
     public class PhysicianDepartment
     {
-        public Physician Physician { get; set; }
-        public Department Department { get; set; }
+        
+      public Physician physician{get; set;}
+      public Department department {get; set;}
 
-        public PhysicianDepartment(Physician physician, Department department)
-        {
-            Physician = physician;
-            Department = department;
-        }
+      public PhysicianDepartment(Physician ph, Department d)
+      {
+          physician = ph;
+          department = d;
     }
 }
