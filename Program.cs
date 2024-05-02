@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection.Metadata;
 
 namespace FinalProject;
 
@@ -8,6 +9,7 @@ class Program
         private static List<Appointment> appointments;
         private static List<PatientAppointment> patientAppointments;
         private static Patient authenticatedPatient;
+        private static Physician authenticatedPhysician;
         private static Physicians physicians;
 
         private static Patient patient;
@@ -107,6 +109,9 @@ class Program
                     case "4":
                         GetCurrentAppointmentsMenu();
                         break;
+                    case "5":
+                        AddAppointment();
+                        break;
                     case "c":
                         Console.Clear();
                         break;
@@ -124,26 +129,51 @@ class Program
 
 
         static void LoginMenu()
-        {
-            if(authenticatedPatient == null)
-            {
-                Console.Write("Enter your username: ");
-                string username = Console.ReadLine();
-                Console.Write("Enter your password: ");
-                string password = Console.ReadLine();
-                authenticatedPatient = patients.Authenticate(username, password);
-                if (authenticatedPatient != null)
+        {   System.Console.WriteLine("Are you a patient or physician?");
+            string user = Console.ReadLine();
+            if(user == "patient"){
+                if(authenticatedPatient == null)
                 {
-                    Console.WriteLine($"Welcome {authenticatedPatient.FirstName}");
+                    Console.Write("Enter your username: ");
+                    string username = Console.ReadLine();
+                    Console.Write("Enter your password: ");
+                    string password = Console.ReadLine();
+                    authenticatedPatient = patients.Authenticate(username, password);
+                    if (authenticatedPatient != null)
+                    {
+                        Console.WriteLine($"Welcome {authenticatedPatient.FirstName}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("invalid username or password");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("invalid username or password");
+                    Console.WriteLine($"You are already logged in as {authenticatedPatient.Username}");
                 }
             }
-            else
-            {
-                Console.WriteLine($"You are already logged in as {authenticatedPatient.Username}");
+            if(user == "physician"){
+                if(authenticatedPhysician == null)
+                {
+                    Console.Write("Enter your username: ");
+                    string username = Console.ReadLine();
+                    Console.Write("Enter your password: ");
+                    string password = Console.ReadLine();
+                    authenticatedPhysician = physicians.Authenticate(username, password);
+                    if (authenticatedPhysician != null)
+                    {
+                        Console.WriteLine($"Welcome {authenticatedPhysician.FirstName}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("invalid username or password");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"You are already logged in as {authenticatedPhysician.Username}");
+                }
             }
         }
 
@@ -199,6 +229,25 @@ class Program
                 foreach(var appointmnet in appointmentList)
                 {
                     Console.WriteLine(appointmnet.appointment.date);
+                }
+            }
+        }
+
+        static void AddAppointment(){
+            System.Console.WriteLine("Who would you like to make an appointment with!");
+            if(physicians.physicians.Count() == 0){
+                System.Console.WriteLine("There are currently no physicians available.");
+            }
+            else
+            {
+                foreach(var physician in physicians.physicians){
+                    System.Console.WriteLine($"The available physicians are Dr.{physician.LastName}");
+                    string chosenphysician = Console.ReadLine();
+                    var cp = physicians.physicians.Where(o => o.LastName == chosenphysician);
+                    var na1 = new Appointment();
+                    appointments.Add(na1);
+                    patients.patients.Add(authenticatedPatient);
+                    var np1 = new PatientAppointment(authenticatedPatient, na1, cp);
                 }
             }
         }
