@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata;
+using System.Runtime.InteropServices;
 
 namespace FinalProject;
 
@@ -92,7 +93,7 @@ class Program
 
             while (!done)
             {
-                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Appointments: 4 --- Clear Screen: 5 --- Make Appointment: 6 --- Print Out Physician: c --- Quit: q ---");
+                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Appointments: 4 --- Make Appointment: 5 --- Print Out Physician: 6 --- Clear Screen: c --- Quit: q ---");
                 Console.Write("Choice: ");
                 string choice = Console.ReadLine();
                 switch(choice)
@@ -274,11 +275,11 @@ Console.WriteLine(physician.Name);
 
         static void AddAppointment(){
             if(authenticatedPatient == null){
-                Console.WriteLine("You must be logged in to make an appointment");
+                Console.WriteLine("You have to be logged in to make an appointment.");
                 return;
             }
             if(authenticatedPhysician != null){
-                Console.WriteLine("Physicians can not make appointments.");
+                Console.WriteLine("Only patients can make appointments.");
                 return;
             }
             System.Console.WriteLine("Who would you like to make an appointment with!");
@@ -299,7 +300,16 @@ Console.WriteLine(physician.Name);
                     appointments.Add(na1);
                     var newPatienAppointment = new PatientAppointment(authenticatedPatient, na1, cp);
                     patientAppointments.Add(newPatienAppointment);
+                    System.Console.WriteLine("Enter the year of the appointment.");
+                    int years = Convert.ToInt32(Console.ReadLine());
+                    System.Console.WriteLine("Enter the month (number) of the appointment.");
+                    int month = Convert.ToInt32(Console.ReadLine());
+                    System.Console.WriteLine("Enter the day (number) of the appointment.");
+                    int day = Convert.ToInt32(Console.ReadLine());
+                    DateTime appointmentdate = new DateTime(years, month, day);
+                    na1.date = appointmentdate;
                     System.Console.WriteLine($"Appointment with Dr. {chosenphysician} has been made.");
+                    System.Console.WriteLine($"The Appointment is set for {na1.date.Month}/{na1.date.Day}/{na1.date.Year}.");
                 } else {
                     System.Console.WriteLine($"Physician with the last name {chosenphysician} not found");
                 }
